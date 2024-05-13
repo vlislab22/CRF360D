@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>CRF360D</title>
+    <meta name="author" content="Zidong Cao">
+    <meta name="description" content="Project page of CRF360D">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="eccv_logo.png">
+    <!-- Format -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="../format/app.css">
+    <link rel="stylesheet" href="../format/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script src="../format/app.js"></script>
+
+  </head>
+
+  <body style=“text-align: center;”>
+    <div class="container" id="main">
+        <div class="row">
+            <h1 class="col-md-12 text-center">
+                CRF360D: Monocular 360 Depth Estimation via Neural Spherical Fully-Connected CRFs<br /> 
+<!--                 <small>
+                    
+                </small> -->
+            </h1>
+        </div>
+	    
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://scholar.google.com/citations?user=q1FcZzIAAAAJ&hl=zh-CN" >
+                         Zidong Cao
+                        </a>
+                        <br /> AI Thrust, HKUST(GZ)
+                        <br /> &nbsp &nbsp
+
+                    </li>
+
+                  <li>
+                        <a href="https://scholar.google.com/citations?user=SReb2csAAAAJ&hl=zh-CN" >
+                           Lin Wang
+                        </a>
+                        <br /> AI Thrust, HKUST(GZ) 
+			            <br/> Dept. of CSE, HKUST 
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+        <!-- ##### Elements #####-->
+        <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+			    
+                            <img src="./image/arxiv.png" height="100px"><br>
+                                <h4><strong>Paper</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+
+                            <img src="./image/youtube_icon.jpg" height="100px"><br>
+                                <h4><strong>Video</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            
+                            <img src="./image/github_icon.jpg" height="100px"><br>
+                                <h4><strong>Code</strong></h4>
+                            </a>
+                        </li>
+                     
+                        <li>
+                            <a href="https://vlislab22.github.io/vlislab/">
+                            <img src="./image/lab_logo.png" height="100px"><br>
+                                <h4><strong>Vlislab</strong></h4>
+                            </a>
+                        </li>                       
+                      
+                    </ul>
+                </div>
+        </div>
+
+
+        <!-- ##### Abstract #####-->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <p class="text-justify">
+                    Monocular 360 depth estimation is challenging due to the inherent distortion of the equirectangular projection (ERP). This distortion causes a problem: 
+spherical adjacent points are separated after being projected to the ERP plane, particularly in the polar regions.
+To tackle this problem, recent methods calculate the spherical neighbors in the tangent domain.
+However, as the tangent patch and sphere only have one common point, these methods construct neighboring spherical relationships around the common point.
+In this paper,
+we propose spherical fully-connected CRFs (SF-CRFs). We begin by evenly partitioning an ERP image with regular windows, where windows at the equator involve broader spherical neighbors than those at the poles. To improve the spherical relationships, our SF-CRFs enjoy two key components. Firstly, to involve sufficient spherical neighbors, we propose a Spherical Window Transform (SWT) module. This module aims to replicate the equator window's spherical relationships to all other windows, leveraging the rotational invariance of the sphere. Remarkably, the transformation process is highly efficient, 
+completing the transformation of all windows in a 512X1024 ERP with 0.038 seconds on CPU. Secondly, we propose a Planar-Spherical Interaction (PSI) module to facilitate the relationships between regular and transformed windows, which not only preserves the local details but also captures global structures.
+By building a decoder based on the SF-CRFs blocks, we propose CRF360D, a novel 360 depth estimation framework that achieves state-of-the-art performance across diverse datasets. Our CRF360D is compatible with different perspective image-trained backbones (e.g., EfficientNet), serving as the encoder.
+                </p>
+            </div>
+        </div>
+
+ 
+
+        <!-- ##### Results #####-->
+
+     <div class="row">   
+	     <div class="col-md-8 col-md-offset-2">
+          <h3>
+              Framework
+          </h3>
+          <p class="text-justify">
+            Overall framework of our CRF360D.
+          </p>
+		  <img src="./image/framework.png" class="img-responsive" alt="vis_res" class="center"><br>
+    </div>  
+
+    <div class="row">   
+        <div class="col-md-8 col-md-offset-2">
+         <h3>
+             SWT module and PSI module.
+         </h3>
+         <p class="text-justify">
+            Illustration of the SWT module and PSI module of our proposed SF-CRFs.
+         </p>
+         <img src="./image/SWT.png" class="img-responsive" alt="vis_res" class="center"><br>
+   </div>  
+	     
+     <div class="col-md-8 col-md-offset-2">
+          <h3>
+              Visual comparison on different methods.
+          </h3>
+          <p class="text-justify">
+            
+
+          </p>
+		  <img src="./image/show1.png" class="img-responsive" alt="vis_res" class="center"><br>
+    </div>   
+          
+      </div>
+   <!-- ##### BibTex #####-->
+        <hr>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    BibTeX
+                </h3>
+ 
+                <div class="row align-items-center">
+                    <div class="col py-3">
+                        <pre class="border">             
+@inproceedings{cao2024crf360d,
+  title={CRF360D: Monocular 360 Depth Estimation via Neural Spherical Fully-Connected CRFs},
+  author={Zidong Cao, Lin Wang},
+  booktitle = {Arxiv},
+  year={2024}
+}
+</pre>
+                    </div>
+                </div>
+              
+    
+          </div>
+          
+        </div>
+    </div>
+</body>
+</html>
